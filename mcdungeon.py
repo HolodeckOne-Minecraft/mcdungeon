@@ -1123,6 +1123,7 @@ if (args.command == 'genreg'):
             else:
                 regions['regions'][name] = {
                     'priority': 4,
+                    'parent': '__mcd_default__',
                     'flags': {},
                     'owners': {},
                     'members': {},
