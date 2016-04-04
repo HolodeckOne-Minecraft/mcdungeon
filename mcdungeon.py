@@ -1095,11 +1095,13 @@ if (args.command == 'genreg'):
             '__global__': {
                 'flags': {},
                 'owners': {},
+                'type': 'global',
                 'members': {}
             },
             '__mcd_default__': {
                 'priority': 4,
                 'flags': {},
+                'type': 'global',
                 'owners': {},
                 'members': {}
             }
@@ -1118,16 +1120,16 @@ if (args.command == 'genreg'):
         dnames[name] = True
         if not name in regions['regions']:
             print 'Adding new region: %s' % (name)
-            if '__mcd_default__' in regions['regions']:
-                regions['regions'][name] = copy.deepcopy(regions['regions']['__mcd_default__'])
-            else:
-                regions['regions'][name] = {
+            regions['regions'][name] = {
                     'priority': 4,
-                    'parent': '__mcd_default__',
                     'flags': {},
                     'owners': {},
                     'members': {},
                 }
+
+            if '__mcd_default__' in regions['regions']:
+                regions['regions'][name]['parent'] = '__mcd_default__'
+
             regions['regions'][name]['type'] = 'cuboid'
             regions['regions'][name]['min'] = {
                     'x': (info['position'].x + 0.0),
